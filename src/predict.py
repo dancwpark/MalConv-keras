@@ -15,7 +15,6 @@ parser.add_argument('--result_path', type=str, default='../saved/result.csv')
 parser.add_argument('csv', type=str)
 
 def predict(model, fn_list, label, batch_size=64, verbose=1):
-    
     max_len = model.input.shape[1]
     pred = model.predict_generator(
         utils.data_generator(fn_list, label, max_len, batch_size, shuffle=False),
