@@ -2,7 +2,7 @@ import argparse
 import numpy as np
 import pandas as pd
 from keras.models import load_model
-
+import time
 import utils
 from preprocess import preprocess
 
@@ -21,6 +21,8 @@ def predict(model, fn_list, label, batch_size=64, verbose=1):
         steps=len(fn_list)//batch_size + 1,
         verbose=verbose
         )
+    print(pred)
+    time.sleep(60)
     return pred
 
 if __name__ == '__main__':
@@ -37,7 +39,7 @@ if __name__ == '__main__':
     df = pd.read_csv(args.csv, header=None)
     fn_list = df[0].values
     label = np.zeros((fn_list.shape))
-    
+
     pred = predict(model, fn_list, label, args.batch_size, args.verbose)
     df['predict score'] = pred
     df[0] = [i.split('/')[-1] for i in fn_list] # os.path.basename

@@ -10,7 +10,7 @@ def limit_gpu_memory(per):
     set_session(tf.Session(config=config))
 
     
-def train_test_split(data, label, val_size=0.1):
+def train_test_split(data, label, val_size=0.05):
     idx = np.arange(len(data))
     np.random.shuffle(idx)
     split = int(len(data)*val_size)

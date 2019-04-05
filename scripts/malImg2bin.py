@@ -24,7 +24,10 @@ for i, img in enumerate(features):
     filename = savePre+str(i)+"_"+str(labels[i])+"_040419"
     with open(filename, 'wb') as f:
         f.write(hexData)
-    csvData.append(filename+", "+str(labels[i]))
+    if labels[i] == 1:
+        csvData.append(filename+", "+str(1))
+    else:
+        csvData.append(filename+", "+str(0))
 
 with open(csvFile, 'w') as f:
     for line in csvData:
